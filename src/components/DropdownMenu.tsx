@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { FaGear, FaArrowLeft } from 'react-icons/fa6'
 import { CSSTransition } from 'react-transition-group';
-
+//Dropdown menu
 export default function DropdownMenu({ setIsOpen }: any) {
 
     const [ activeMenu, setActiveMenu ] = useState('main')
