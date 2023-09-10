@@ -1,0 +1,137 @@
+/* defaults */
+:root {
+    --size: 400ms;
+}
+
+
+p { 
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+.outer-nav {
+    background-color:#242526;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 0.7em 0.9em;
+}
+
+.nav-button {
+    background-color:#3A3B3C;
+    padding: 10px;
+    border-radius: 100%;
+    margin: 0 0.2em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.nav-button:hover { 
+    background-color:#4a4b4d;
+    transition: 0.3s ease-out;
+}
+
+
+.outer-dropdown {
+    background-color: #242526;
+    position: absolute;
+    margin-top: 0.7em;
+    transform: translateX(-83%);
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    padding: 1em 0.4em;
+    box-shadow: -12px -5px 27px -3px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: height var(--size) ease;
+}
+
+.outer-dropdownItem{
+    display: flex;
+    align-items: center;
+    padding: 0.4em 0.3em;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.outer-dropdownItem:hover{
+    background-color:#4a4b4d;
+    transition: 0.3s ease-out;
+}
+
+.menu {
+    width: 100%;
+}
+/* animation */
+/* primary */
+.menu-primary-enter {
+    position: absolute;
+    top:0;
+    transform: translateX(-110%);
+  }
+  
+.menu-primary-enter-active {
+    transform: translateX(0%);
+    transition: all var(--size) ease;
+}
+
+.menu-primary-exit {
+    position: absolute;
+    top: 0;
+}
+
+.menu-primary-exit-active {
+    transform: translateX(-110%);
+    transition: all var(--size) ease;
+}
+
+/* secondary */
+
+.menu-secondary-enter {
+    
+    transform: translateX(110%);
+}
+  
+.menu-secondary-enter-active {
+    transform: translateX(0%);
+    transition: all var(--size) ease;
+}
+
+.menu-secondary-exit {
+    transform: translateX(0%);
+}
+
+.menu-secondary-exit-active {
+    transform: translateX(-110%);
+    transition: all var(--size) ease;
+}
+
+
+/* third help */
+.menu-third-enter {
+    position: absolute;
+    top:0;
+    transform: translateX(110%);
+}
+  
+.menu-third-enter-active {
+    transform: translateX(0%);
+    transition: all var(--size) ease;
+}
+
+.menu-third-exit {
+    transform: translateX(0%);
+}
+
+.menu-third-exit-active {
+    position: absolute;
+    top:0;
+    transform: translateX(110%);
+    transition: all var(--size) ease;
+}
+
