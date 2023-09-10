@@ -2,32 +2,34 @@ import { useState, useRef, useEffect } from 'react'
 import { FaGear, FaArrowLeft } from 'react-icons/fa6'
 import { CSSTransition } from 'react-transition-group';
 
-export default function DropdownMenu({ setIsOpen, open }: any) {
+export default function DropdownMenu({ setIsOpen }: any) {
 
     const [ activeMenu, setActiveMenu ] = useState('main')
     const nodeRefPrimary = useRef(null)
     const nodeRefSecondary = useRef(null)
     const nodeRefThird = useRef(null)
-    const [menuHeight, setMenuHeight] = useState(null)
-    const dropRef = useRef(null)
+    // const [menuHeight, setMenuHeight] = useState(null)
+    const dropRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
 
         let handle = (el: any) => {
-          if(!dropRef?.current?.contains(el.target)) {
-            setIsOpen(false)
-          }
+            if(dropRef.current) {
+                if(!dropRef?.current.contains(el.target)) {
+                    setIsOpen(false)
+                  }
+            }
         }
         document.addEventListener("mousedown", handle)
 
         return () => { document.removeEventListener("mousedown", handle) }
-      },[ dropRef])
+      },[dropRef])
 
-    function calcHeight(el: any) {
-        const height = el.offsetHeight;
-        console.log(height)
-        setMenuHeight(height)
-    }
+    // function calcHeight(el: any) {
+    //     const height = el.offsetHeight;
+    //     console.log(height)
+    //     setMenuHeight(height)
+    // }
 
     function DropdownItem({ leftIcon, rightIcon, children, goTo}: any) {
         return (
@@ -41,8 +43,8 @@ export default function DropdownMenu({ setIsOpen, open }: any) {
     }
 
   return (
-    //fix animation & height animation
-    <div className="outer-dropdown" style={{ height: menuHeight }} ref={dropRef}>
+    //fix animation & height animation - height animate
+    <div className="outer-dropdown" ref={dropRef}>
         <div style={{ position: "relative" }}>
             {/* Main Dropdown */}
             <CSSTransition 
@@ -51,7 +53,7 @@ export default function DropdownMenu({ setIsOpen, open }: any) {
                 timeout={400} 
                 classNames="menu-primary"
                 nodeRef={nodeRefPrimary}
-                onEnter={calcHeight}
+                // onEnter={calcHeight}
             >
                 <div className='menu' ref={nodeRefPrimary}>
                     <DropdownItem leftIcon={<FaGear size="1.3em" color="white" className="nav-button" />} goTo="settings">Settings & Privacy</DropdownItem>
@@ -77,7 +79,7 @@ export default function DropdownMenu({ setIsOpen, open }: any) {
                 timeout={400} 
                 classNames="menu-secondary"
                 nodeRef={nodeRefSecondary}
-                onEnter={calcHeight}
+                // onEnter={calcHeight}
             >
                 <div className='menu' ref={nodeRefSecondary}>
                     <DropdownItem leftIcon={<FaArrowLeft size="1.3em" color="white" className="nav-button"/>} goTo="main"/>
@@ -96,7 +98,7 @@ export default function DropdownMenu({ setIsOpen, open }: any) {
                 timeout={400} 
                 classNames="menu-third"
                 nodeRef={nodeRefThird}
-                onEnter={calcHeight}
+                // onEnter={calcHeight}
             >
                 <div className='menu' ref={nodeRefThird}>
                     <DropdownItem leftIcon={<FaArrowLeft size="1.3em" color="white" className="nav-button"/>} goTo="settings"/>
